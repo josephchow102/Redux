@@ -19,7 +19,9 @@ open class StoreConnector {
 
     var connections: [Int: Disconnect] = [Int: Disconnect]()
 
-    func connect(_ store: ReduxStore, keys: [String], delegate: StoreDelegate) {
+    public init () {}
+
+    public func connect(_ store: ReduxStore, keys: [String], delegate: StoreDelegate) {
         let address: Int = unsafeBitCast(store, to: Int.self)
 
         var lastState: ReduxAppState?
@@ -47,7 +49,7 @@ open class StoreConnector {
         }
     }
 
-    func disconnect(_ store: ReduxStore) {
+    public func disconnect(_ store: ReduxStore) {
         let address: Int = unsafeBitCast(store, to: Int.self)
         connections[address]!()
         connections.removeValue(forKey: address)
